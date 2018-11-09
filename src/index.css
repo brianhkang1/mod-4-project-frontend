@@ -1,14 +1,58 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-image: url("./main_background.jpg") !important;
+  background-size: cover !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+button.ui.button {
+    margin:0 auto;
+    display:block;
+}
+
+#header-title.header, #header-recipeDetail-name {
+  font-size: 2.5em;
+}
+
+.normal-text{
+  font-size: 1.5em;
+}
+
+a.item{
+  font-size: 1.3em;
+}
+
+#home-page-text{
+  font-size: 9em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* .home-position {
+  position: fixed;
+  top: 25%;
+  left: 35%;
+
+  transform: translate(-50%, -50%);
+} */
+
+a.ui.grid{
+  color: black;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+div.ui.segment{
+  /* padding-left: 50px;
+  padding-top: 20px; */
+  background: rgba(255,255,255,.5);
+  min-width: 400px;
+}
+
+.big.icon {
+  float: right;
+  color: black;
 }
