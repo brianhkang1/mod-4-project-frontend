@@ -17,7 +17,7 @@ class Login extends React.Component {
     })
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = (event, routerProps) => {
     event.preventDefault()
     let body = {
       user: {
@@ -26,7 +26,7 @@ class Login extends React.Component {
       }
     }
 
-    fetch(`http://localhost:3000/api/v1/login`,{
+    fetch(`http://localhost:3000/api/v1/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,15 +36,15 @@ class Login extends React.Component {
     }).then(res => res.json())
       .then(json => {
         localStorage.setItem("token", json.jwt)
-        // this.props.updateUserInfo(json.user_info)
+        this.props.signInUser(json.user, this.props.router )
       })
-  }
+    }
 
   render(){
     return(
       <div className="centered">
       <Segment stacked>
-        <Form size='large' onSubmit={this.handleSubmit}>
+        <Form size='large' onSubmit={(event) => this.handleSubmit(event, this.props.router)}>
           <Form.Input fluid icon='user' iconPosition='left' name="username" placeholder='username' onChange={this.handleChange} />
           <Form.Input fluid icon='lock' iconPosition='left' name="password" placeholder='password' type='password' onChange={this.handleChange} />
           <Button fluid size='large'>Login</Button>

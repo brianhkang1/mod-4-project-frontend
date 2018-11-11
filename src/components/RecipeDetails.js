@@ -2,6 +2,8 @@ import React from 'react'
 import {Grid, Segment, Image, Icon, Label, Header} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
+const URL = "http://localhost:3000"
+
 class RecipeDetails extends React.Component{
 
   findRecipeCreator = () => {
@@ -10,20 +12,21 @@ class RecipeDetails extends React.Component{
   }
 
   arrayOfIngredients = () => {
-    return this.props.recipe.ingredients.split(",; ")
+    return this.props.recipe.ingredients.split("&&")
   }
 
   arrayOfInstructions = () => {
-    return this.props.recipe.instructions.split(",; ")
+    return this.props.recipe.instructions.split("&&")
   }
 
   render(){
     return(
+      <div className="centered">
       <Segment>
         <Link to="/recipes"><Icon name="window close outline" size="big"/></Link>
         <Grid>
           <Grid.Column width={7}>
-            <Image wrapped size="huge" src="https://images.unsplash.com/photo-1509912760195-4f6cfd8cce2c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a621517c7a9bc90c857dc0bced1dcca3&auto=format&fit=crop&w=1050&q=80" />
+            <Image wrapped size="huge" src={URL + this.props.recipe.image.url} />
           </Grid.Column>
           <Grid.Column width={9}>
             <Header id="header-recipeDetail-name">{this.props.recipe.name}</Header>
@@ -46,8 +49,8 @@ class RecipeDetails extends React.Component{
             </div>
           </Grid.Column>
         </Grid>
-
       </Segment>
+      </div>
     )
   }
 }

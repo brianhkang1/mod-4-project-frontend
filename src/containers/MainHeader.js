@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Menu, Button } from 'semantic-ui-react'
-import {NavLink} from 'react-router-dom'
+import { Menu, Button} from 'semantic-ui-react'
+import {NavLink, Link} from 'react-router-dom'
 
 export default class MainHeader extends Component {
   constructor(){
@@ -14,7 +14,6 @@ export default class MainHeader extends Component {
 
   render() {
     const { activeItem } = this.state
-
     return (
         <Menu inverted secondary>
           <Menu.Item id="header-title" header as={NavLink} exact to="/"
@@ -33,7 +32,7 @@ export default class MainHeader extends Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item as={NavLink} to="/saved_recipes"
-            name='saved recipes'
+            name='My saved recipes'
             active={activeItem === 'saved recipes'}
             onClick={this.handleItemClick}
           />
@@ -43,12 +42,14 @@ export default class MainHeader extends Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item position='right'>
-            <Button as={NavLink} to="/login" inverted >
-              Log in
-            </Button>
-            <Button as={NavLink} to="/signup" style={{ marginLeft: '0.5em' }} inverted >
-              Sign Up
-            </Button>
+            {this.props.signedInUser ?
+              <React.Fragment>
+                <Button inverted> {this.props.signedInUser.username}'s Cookbook</Button>
+                <Button onClick={() => this.props.logout(this.props.router)} style={{ marginLeft: '0.5em' }} inverted>Log out</Button>
+              </React.Fragment>
+              :
+              <Link to="/login"><Button inverted >Log in</Button></Link> }
+            {this.props.signedInUser ? null : <Link to="/signup"><Button inverted style={{ marginLeft: '0.5em' }} > Sign Up </Button></Link> }
           </Menu.Item>
         </Menu>
     )

@@ -2,6 +2,9 @@ import React from 'react'
 import {Grid, Segment, Image, Label} from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
 
+const URL = "http://localhost:3000"
+
+
 class RecipeCard extends React.Component{
 
   findRecipeCreator = () => {
@@ -10,7 +13,7 @@ class RecipeCard extends React.Component{
   }
 
   sanitizeIngredients = () => {
-    return this.props.recipe.ingredients.split(",; ").join(", ")
+    return this.props.recipe.ingredients.split("&&").join(", ")
   }
 
   render(){
@@ -20,7 +23,7 @@ class RecipeCard extends React.Component{
           <Grid.Row>
           <Label attached='bottom right'>courtesy of {this.findRecipeCreator()}</Label>
             <Grid.Column width={5}>
-              <Image src="https://images.unsplash.com/photo-1509912760195-4f6cfd8cce2c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a621517c7a9bc90c857dc0bced1dcca3&auto=format&fit=crop&w=1050&q=80"/>
+              <Image src={URL + this.props.recipe.image.url}/>
             </Grid.Column>
             <Grid.Column width={11}>
               <h1>{this.props.recipe.name}</h1>
