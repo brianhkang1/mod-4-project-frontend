@@ -18,6 +18,8 @@ class RecipeCard extends React.Component{
 
   render(){
     return(
+      <React.Fragment>
+      {this.props.userList.length === 0 ? null :
       <Segment>
         <Grid as={NavLink} to={`/recipes/${this.props.recipe.id}`}>
           <Grid.Row>
@@ -32,7 +34,8 @@ class RecipeCard extends React.Component{
             </Grid.Column>
             </Grid.Row>
         </Grid>
-      </Segment>
+      </Segment>}
+      </React.Fragment>
     )
   }
 }

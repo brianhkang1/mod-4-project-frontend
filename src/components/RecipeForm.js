@@ -4,8 +4,8 @@ import {Segment, Form, Button, Icon} from 'semantic-ui-react'
 
 
 class RecipeForm extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       name: "",
       time: "",
@@ -68,11 +68,7 @@ class RecipeForm extends React.Component {
         "Authorization": `Bearer ${localStorage.getItem("token")}`
       },
       body: formData
-    }).then(res => res.json())
-      .then(json => {
-        console.log(json)
-        debugger
-      })
+    }).then(res => res.json()).then(json => routerProps.history.push(`/recipes/${json.id}`))
     }
 
   handleImageUpload = (event) => {
@@ -81,14 +77,14 @@ class RecipeForm extends React.Component {
 
   render(){
     return(
-      <div id="form">
+      <div className="form">
       {this.props.signedInUser ?
         <Form id="recipe-form" size={"huge"} onSubmit={(event) => this.handleSubmit(event, this.props.router)}>
         <Segment>
           <Form.Group widths="equal">
             <Form.Input fluid required icon='spoon' iconPosition='left' label="Name your recipe" name="name" placeholder='recipe name' onChange={this.handleChange} />
             <Form.Input fluid required icon='stopwatch' iconPosition='left' label="Estimated cook time" name="time" placeholder='cook time' onChange={this.handleChange} />
-            <Form.Input fluid required icon='dollar' iconPosition='left' label="Cost" name="cost" placeholder='cost' type="number" onChange={this.handleChange} />
+            <Form.Input fluid required icon='dollar' iconPosition='left' label="Cost" name="cost" type="number" min="0" step="0.01" placeholder='0.00' onChange={this.handleChange} />
           </Form.Group>
           <Form.TextArea required label="Describe your recipe" name="summary" onChange={this.handleChange} />
           <Form.Group>

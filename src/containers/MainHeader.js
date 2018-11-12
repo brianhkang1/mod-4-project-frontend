@@ -31,6 +31,8 @@ export default class MainHeader extends Component {
             active={activeItem === 'see all recipes'}
             onClick={this.handleItemClick}
           />
+          {this.props.signedInUser ?
+          <React.Fragment>
           <Menu.Item as={NavLink} to="/saved_recipes"
             name='My saved recipes'
             active={activeItem === 'saved recipes'}
@@ -41,6 +43,9 @@ export default class MainHeader extends Component {
             active={activeItem === 'make a recipe'}
             onClick={this.handleItemClick}
           />
+          </React.Fragment>
+          :
+          null }
           <Menu.Item position='right'>
             {this.props.signedInUser ?
               <React.Fragment>

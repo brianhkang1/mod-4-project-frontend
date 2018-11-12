@@ -1,6 +1,7 @@
 body {
   background-image: url("./main_background.jpg") !important;
   background-size: cover !important;
+  background-attachment: fixed !important;
 }
 
 button.ui.button {
@@ -49,7 +50,7 @@ a.ui.grid{
   transform: translate(-50%, -50%);
 }
 
-#form{
+.form{
   margin-left: 10%;
   max-width: 1100px;
 }

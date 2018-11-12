@@ -4,15 +4,15 @@ import MainHeader from './MainHeader'
 import Home from '../components/Home'
 import About from '../components/About'
 import AllRecipes from './AllRecipes'
-import AllSavedRecipes from './AllSavedRecipes'
+import MySavedRecipes from '../components/MySavedRecipes'
 import RecipeForm from '../components/RecipeForm'
 import RecipeDetails from '../components/RecipeDetails'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
 
 class App extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       recipeList: [],
       userList: [],
@@ -43,17 +43,10 @@ class App extends Component {
     let token = localStorage.getItem('token')
     if(token){
       fetch(`http://localhost:3000/api/v1/profile`, {
-        headers: {
-          "Authorization" : `Bearer ${token}`
-        }
+        headers: {"Authorization" : `Bearer ${token}`}
       }).then(res => res.json())
-      .then(json => {
-        this.setState({
-          signedInUser: json.user
-        })
-      })
+      .then(json => {this.setState({signedInUser: json.user})})
     }
-
   }
 
   signInUser = (userInfo, routerProps) => {
@@ -79,12 +72,11 @@ class App extends Component {
         <Route exact path="/" render={() => <Home />} />
         <Route exact path="/about" render={() => <About/>} />
         <Route exact path="/recipes" render={() => <AllRecipes recipeList={this.state.recipeList} userList={this.state.userList}/>}  />
-        <Route exact path="/saved_recipes" render={() => <AllSavedRecipes />} />
+        <Route exact path="/saved_recipes" render={() => <AllRecipes recipeList={this.state.signedInUser.recipes} userList={this.state.userList}/>}/>
         <Route exact path="/recipes_form" render={(props) => <RecipeForm signedInUser={this.state.signedInUser} router={props}/>} />
         <Route exact path="/recipes/:id" render={(props) => {
-          let recipeId = props.match.params.id
-          let recipe = this.state.recipeList.find(recipe => parseInt(recipe.id) === parseInt(recipeId))
-          return <RecipeDetails recipe={recipe} userList={this.state.userList} />}} />
+          let recipeId = parseInt(props.match.params.id)
+          return <RecipeDetails recipeId={recipeId} userList={this.state.userList} signedInUser={this.state.signedInUser} router={props}/>}} />
         <Route exact path="/login" render={(props) => <Login signInUser={this.signInUser} router={props}/>} />
         <Route exact path="/signup" render={(props) => <Signup signInUser={this.signInUser} router={props}/>} />
       </React.Fragment>
