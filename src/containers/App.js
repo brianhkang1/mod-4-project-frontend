@@ -42,11 +42,15 @@ class App extends Component {
 
     let token = localStorage.getItem('token')
     if(token){
-      fetch(`http://localhost:3000/api/v1/profile`, {
-        headers: {"Authorization" : `Bearer ${token}`}
-      }).then(res => res.json())
-      .then(json => {this.setState({signedInUser: json.user})})
+      this.fetchSignedInUser()
     }
+  }
+
+  fetchSignedInUser = () => {
+    fetch(`http://localhost:3000/api/v1/profile`, {
+      headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`}
+    }).then(res => res.json())
+    .then(json => {this.setState({signedInUser: json.user})})
   }
 
   signInUser = (userInfo, routerProps) => {
@@ -76,7 +80,7 @@ class App extends Component {
         <Route exact path="/recipes_form" render={(props) => <RecipeForm signedInUser={this.state.signedInUser} fetchAllRecipes={this.fetchAllRecipes} router={props}/>} />
         <Route exact path="/recipes/:id" render={(props) => {
           let recipeId = parseInt(props.match.params.id)
-          return <RecipeDetails recipeId={recipeId} userList={this.state.userList} signedInUser={this.state.signedInUser} router={props}/>}} />
+          return <RecipeDetails recipeId={recipeId} userList={this.state.userList} signedInUser={this.state.signedInUser} fetchSignedInUser={this.fetchSignedInUser} router={props}/>}} />
         <Route exact path="/login" render={(props) => <Login signInUser={this.signInUser} router={props}/>} />
         <Route exact path="/signup" render={(props) => <Signup signInUser={this.signInUser} fetchAllUsers={this.fetchAllUsers} router={props}/>} />
       </React.Fragment>

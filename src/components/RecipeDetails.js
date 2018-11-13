@@ -65,7 +65,7 @@ class RecipeDetails extends React.Component{
           headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
         }).then(res => res.json())
           .then(data => {
-            this.fetchSavedRecipes()
+            this.props.fetchSignedInUser()
             this.setState({selectedRecipe: data})
           })
       })
