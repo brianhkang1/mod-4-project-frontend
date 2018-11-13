@@ -4,11 +4,11 @@ import MainHeader from './MainHeader'
 import Home from '../components/Home'
 import About from '../components/About'
 import AllRecipes from './AllRecipes'
-import MySavedRecipes from '../components/MySavedRecipes'
 import RecipeForm from '../components/RecipeForm'
 import RecipeDetails from '../components/RecipeDetails'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
+import FoodGrid from './FoodGrid'
 
 class App extends Component {
   constructor(props){
@@ -71,7 +71,7 @@ class App extends Component {
         <Route path="/" render={(props) => <MainHeader signedInUser={this.state.signedInUser} logout={this.logout} router={props}/>} />
         <Route exact path="/" render={() => <Home />} />
         <Route exact path="/about" render={() => <About/>} />
-        <Route exact path="/recipes" render={() => <AllRecipes recipeList={this.state.recipeList} userList={this.state.userList}/>}  />
+        <Route exact path="/recipes" render={() => <FoodGrid recipeList={this.state.recipeList} userList={this.state.userList}/>}  />
         {this.state.signedInUser ? <Route exact path="/saved_recipes" render={() => <AllRecipes recipeList={this.state.signedInUser.recipes} userList={this.state.userList}/>}/> : null}
         <Route exact path="/recipes_form" render={(props) => <RecipeForm signedInUser={this.state.signedInUser} fetchAllRecipes={this.fetchAllRecipes} router={props}/>} />
         <Route exact path="/recipes/:id" render={(props) => {

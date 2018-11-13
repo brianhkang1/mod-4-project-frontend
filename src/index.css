@@ -13,6 +13,14 @@ button.ui.button {
   font-size: 2.5em;
 }
 
+div.row{
+  font-size: 1.1em;
+}
+
+.ui.bottom.attached.label{
+  font-size: 0.9em;
+}
+
 textarea {
   height: 150px;
 }
@@ -30,14 +38,6 @@ a.item{
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* .home-position {
-  position: fixed;
-  top: 25%;
-  left: 35%;
-
-  transform: translate(-50%, -50%);
-} */
-
 a.ui.grid{
   color: black;
 }
@@ -48,6 +48,11 @@ a.ui.grid{
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+#food-grid{
+  margin: 3%;
+  display: inline-block;
 }
 
 #recipe-form{
@@ -61,6 +66,7 @@ div.ui.segment{
   padding-top: 20px; */
   background: rgba(255,255,255,.5);
   min-width: 400px;
+  font-size: 0.9em;
 }
 
 .big.icon {

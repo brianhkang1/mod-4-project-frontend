@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Segment, Image, Label} from 'semantic-ui-react'
+import {Grid, Segment, Icon, Image} from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
 
 const URL = "http://localhost:3000"
@@ -23,12 +23,12 @@ class RecipeCard extends React.Component{
       <Segment>
         <Grid as={NavLink} to={`/recipes/${this.props.recipe.id}`}>
           <Grid.Row>
-          <Label attached='bottom right'>courtesy of {this.findRecipeCreator()}</Label>
             <Grid.Column width={5}>
               <Image src={URL + this.props.recipe.image.url}/>
             </Grid.Column>
             <Grid.Column width={11}>
               <h1>{this.props.recipe.name}</h1>
+              <p><Icon fitted name='user'/> {this.findRecipeCreator()} |{" "}<Icon fitted name='time'/> {this.props.recipe.time} |{" "}<Icon fitted name="dollar"/> {this.props.recipe.cost}</p>
               <p>{this.props.recipe.summary}</p>
               <p>Ingredients: {this.sanitizeIngredients()}</p>
             </Grid.Column>

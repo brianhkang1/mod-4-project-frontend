@@ -13,7 +13,8 @@ class AllRecipes extends React.Component{
           {this.props.recipeList.map(recipe => {
             return <RecipeCard key={recipe.id} recipe={recipe} userList={this.props.userList} />
           })}
-        </Container>}
+        </Container>
+        }
       </React.Fragment>
     )
   }

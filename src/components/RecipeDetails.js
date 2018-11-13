@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid, Segment, Image, Icon, Label, Button, Header} from 'semantic-ui-react'
+import {Grid, Segment, Image, Icon, Button, Header} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 const URL = "http://localhost:3000"
@@ -13,14 +13,21 @@ class RecipeDetails extends React.Component{
     }
   }
 
-  componentDidMount(){
+  fetchSavedRecipes(){
     fetch(`http://localhost:3000/api/v1/saved_recipes`,{
       headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
     }).then(res => res.json()).then(data => this.setState({savedRecipes: data}))
+  }
 
+  fetchSelectedRecipe(){
     fetch(`http://localhost:3000/api/v1/recipes/${this.props.recipeId}`,{
       headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
     }).then(res => res.json()).then(data => this.setState({selectedRecipe: data}))
+  }
+
+  componentDidMount(){
+    this.fetchSavedRecipes()
+    this.fetchSelectedRecipe()
   }
 
   findRecipeCreator = () => {
@@ -56,7 +63,11 @@ class RecipeDetails extends React.Component{
       }).then(res => res.json()).then(json => {
         fetch(`http://localhost:3000/api/v1/recipes/${json.recipe_id}`,{
           headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
-        }).then(res => res.json()).then(data => this.setState({selectedRecipe: data}))
+        }).then(res => res.json())
+          .then(data => {
+            this.fetchSavedRecipes()
+            this.setState({selectedRecipe: data})
+          })
       })
     }
   }
@@ -70,13 +81,15 @@ class RecipeDetails extends React.Component{
       <Segment>
         <Link to="/recipes"><Icon name="window close outline" size="big"/></Link>
         <Grid>
-        <Label attached='bottom right'>courtesy of {this.findRecipeCreator()}</Label>
         <Grid.Row>
           <Grid.Column width={7}>
             <Image wrapped size="massive" src={URL+this.state.selectedRecipe.image.url} />
           </Grid.Column>
           <Grid.Column width={9}>
             <Header id="header-recipeDetail-name">{this.state.selectedRecipe.name}</Header>
+            <p><Icon fitted name='user'/> {this.findRecipeCreator()}<br />
+            <Icon fitted name='time'/> {this.state.selectedRecipe.time}<br />
+            <Icon fitted name="dollar"/> {this.state.selectedRecipe.cost}</p>
             <div className="recipeDetails-summary">
               <p><strong>Quick tidbit:</strong> {this.state.selectedRecipe.summary}</p>
             </div>
