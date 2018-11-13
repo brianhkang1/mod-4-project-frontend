@@ -3,8 +3,8 @@ import { Menu, Button} from 'semantic-ui-react'
 import {NavLink, Link} from 'react-router-dom'
 
 export default class MainHeader extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       activeItem: ''
     }

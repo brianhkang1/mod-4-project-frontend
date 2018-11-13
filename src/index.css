@@ -76,3 +76,11 @@ div.ui.segment{
   float: right;
   color: black;
 }
+
+.recipeDetails-summary, .recipeDetails-ingredients, .recipeDetails-instructions{
+  font-size: 1.2em;
+}
+
+#add-button{
+  cursor: pointer
+}

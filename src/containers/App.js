@@ -10,6 +10,10 @@ import Login from '../components/Login'
 import Signup from '../components/Signup'
 import FoodGrid from './FoodGrid'
 
+const USERS_URL = `http://localhost:3000/api/v1/users`
+const RECIPES_URL = `http://localhost:3000/api/v1/recipes`
+const PROFILE_URL = `http://localhost:3000/api/v1/profile`
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -21,7 +25,7 @@ class App extends Component {
   }
 
   fetchAllUsers = () => {
-    return fetch(`http://localhost:3000/api/v1/users`)
+    return fetch(USERS_URL)
       .then(res => res.json())
       .then(data => this.setState({
         userList: data
@@ -29,7 +33,7 @@ class App extends Component {
   }
 
   fetchAllRecipes = () => {
-    fetch(`http://localhost:3000/api/v1/recipes`)
+    fetch(RECIPES_URL)
     .then(res => res.json())
     .then(data => this.setState({
       recipeList: data
@@ -47,7 +51,7 @@ class App extends Component {
   }
 
   fetchSignedInUser = () => {
-    fetch(`http://localhost:3000/api/v1/profile`, {
+    fetch(PROFILE_URL, {
       headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`}
     }).then(res => res.json())
     .then(json => {this.setState({signedInUser: json.user})})
