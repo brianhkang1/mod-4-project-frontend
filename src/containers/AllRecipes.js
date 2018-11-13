@@ -7,8 +7,7 @@ class AllRecipes extends React.Component{
   render(){
     return(
       <React.Fragment>
-        {this.props.recipeList.length === 0 ?
-        null :
+        {this.props.recipeList.length === 0 ? null :
         <Container>
           {this.props.recipeList.map(recipe => {
             return <RecipeCard key={recipe.id} recipe={recipe} userList={this.props.userList} />

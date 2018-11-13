@@ -20,13 +20,13 @@ class RecipeCard extends React.Component{
     return(
       <React.Fragment>
       {this.props.userList.length === 0 ? null :
-      <Segment>
+      <Segment className="saved-recipe-segment">
         <Grid as={NavLink} to={`/recipes/${this.props.recipe.id}`}>
           <Grid.Row>
-            <Grid.Column width={5}>
-              <Image src={URL + this.props.recipe.image.url}/>
+            <Grid.Column width={4}>
+              <Image fluid src={URL + this.props.recipe.image.url}/>
             </Grid.Column>
-            <Grid.Column width={11}>
+            <Grid.Column width={12}>
               <h1>{this.props.recipe.name}</h1>
               <p><Icon fitted name='user'/> {this.findRecipeCreator()} |{" "}<Icon fitted name='time'/> {this.props.recipe.time} |{" "}<Icon fitted name="dollar"/> {this.props.recipe.cost}</p>
               <p>{this.props.recipe.summary}</p>

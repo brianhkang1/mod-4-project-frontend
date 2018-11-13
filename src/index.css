@@ -62,16 +62,17 @@ a.ui.grid{
 }
 
 div.ui.segment{
-  /* padding-left: 50px;
-  padding-top: 20px; */
   background: rgba(255,255,255,.5);
   min-width: 400px;
   font-size: 0.9em;
+}
+
+.saved-recipe-segment{
+  left: 15%;
+  max-width: 800px;
 }
 
 .big.icon {
   float: right;
   color: black;
 }
-
- 
