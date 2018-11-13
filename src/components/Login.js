@@ -45,9 +45,9 @@ class Login extends React.Component {
       <div className="centered">
       <Segment stacked>
         <Form size='large' onSubmit={(event) => this.handleSubmit(event, this.props.router)}>
-          <Form.Input fluid icon='user' iconPosition='left' name="username" placeholder='username' onChange={this.handleChange} />
-          <Form.Input fluid icon='lock' iconPosition='left' name="password" placeholder='password' type='password' onChange={this.handleChange} />
-          <Button fluid size='large'>Login</Button>
+          <Form.Input required fluid icon='user' iconPosition='left' name="username" placeholder='username' onChange={this.handleChange} />
+          <Form.Input required fluid icon='lock' iconPosition='left' name="password" placeholder='password' type='password' onChange={this.handleChange} />
+          <Button color="teal" fluid size='large'>Login</Button>
         </Form>
       </Segment>
       </div>

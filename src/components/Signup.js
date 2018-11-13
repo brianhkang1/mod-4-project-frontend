@@ -66,7 +66,7 @@ class Signup extends React.Component {
           <Form.Input required icon='thumbs up' iconPosition='left' label="If you had to eat one thing for the rest of your life..." name="fav_food" placeholder="favorite food" onChange={this.handleChange} />
           <Form.Input required icon='thumbs down' iconPosition='left' label="If you could eradicate one food from this world..." name="worst_food" placeholder="worst food ever" onChange={this.handleChange} />
 
-          <Button fluid size='large'>Signup</Button>
+          <Button color="teal" fluid size='large'>Signup</Button>
         </Form>
       </Segment>
       </div>

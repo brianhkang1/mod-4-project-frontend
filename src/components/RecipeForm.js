@@ -99,8 +99,8 @@ class RecipeForm extends React.Component {
               {this.state.instruction_count.map((instruction, index) => <input type="text" key={instruction} placeholder="instruction" onChange={e => this.handleInstructionChange(index, e.target.value)}/>)}
             </Form.Field>
           </Form.Group>
-          <Form.Input fluid label="Upload an image of your meal" id="upload-image" type="file" name="image" accept="image/*" onChange={this.handleImageUpload}/>
-          <Button fluid >Share</Button>
+          <Form.Input required fluid label="Upload an image of your meal" id="upload-image" type="file" name="image" accept="image/*" onChange={this.handleImageUpload}/>
+          <Button color="teal" fluid >Share</Button>
           </Segment>
         </Form>
       : <Segment><p className="normal-text">You must be signed in to create a recipe.</p></Segment>
