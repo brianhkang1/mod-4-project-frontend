@@ -50,7 +50,8 @@ class Signup extends React.Component {
     }).then(res => res.json())
       .then(json => {
         localStorage.setItem("token", json.jwt)
-        this.props.signInUser(json.user, this.props.router )
+        this.props.fetchAllUsers()
+        this.props.signInUser(json.user, this.props.router)
       })
     }
 

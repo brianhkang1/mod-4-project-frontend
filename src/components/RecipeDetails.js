@@ -36,7 +36,7 @@ class RecipeDetails extends React.Component{
     return this.state.selectedRecipe.instructions.split("&&")
   }
 
-  handleSaveRecipe = (event, routerProps) => {
+  handleSaveRecipe = (event) => {
     event.preventDefault()
 
     if(!this.state.selectedRecipe.saved_recipes.find(recipe => recipe.user_id === this.props.signedInUser.id)){
@@ -98,7 +98,7 @@ class RecipeDetails extends React.Component{
             {this.props.signedInUser ?
               !this.state.selectedRecipe.saved_recipes.find(recipe => recipe.user_id === this.props.signedInUser.id) ?
                 <div id="save-recipe-button">
-                <Button size="massive" onClick={(event) => this.handleSaveRecipe(event, this.props.router)}>Save recipe</Button>
+                <Button size="massive" onClick={this.handleSaveRecipe}>Save recipe</Button>
                 </div>
                 :
                 <div id="save-recipe-button">

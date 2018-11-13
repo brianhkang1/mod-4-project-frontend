@@ -50,8 +50,9 @@ a.ui.grid{
   transform: translate(-50%, -50%);
 }
 
-.form{
-  margin-left: 10%;
+#recipe-form{
+  margin-left: 12%;
+  margin-top: 5%;
   max-width: 1100px;
 }
 

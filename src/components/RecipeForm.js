@@ -68,7 +68,9 @@ class RecipeForm extends React.Component {
         "Authorization": `Bearer ${localStorage.getItem("token")}`
       },
       body: formData
-    }).then(res => res.json()).then(json => routerProps.history.push(`/recipes/${json.id}`))
+    }).then(res => res.json()).then(json => {
+      this.props.fetchAllRecipes()
+      routerProps.history.push(`/recipes/${json.id}`)})
     }
 
   handleImageUpload = (event) => {
