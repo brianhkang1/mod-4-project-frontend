@@ -44,6 +44,7 @@ class App extends Component {
     this.fetchAllRecipes()
     this.fetchAllUsers()
 
+    //check if token is stored in localStorage to see if there was a previous user signed in
     let token = localStorage.getItem('token')
     if(token){
       this.fetchSignedInUser()
@@ -51,6 +52,7 @@ class App extends Component {
   }
 
   fetchSignedInUser = () => {
+    //if token is present, fetch the signed in user through profile backend API
     fetch(PROFILE_URL, {
       headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`}
     }).then(res => res.json())
@@ -58,6 +60,7 @@ class App extends Component {
   }
 
   signInUser = (userInfo, routerProps) => {
+    //when logging in
     if(userInfo){
       this.setState({
         signedInUser: userInfo
@@ -68,6 +71,7 @@ class App extends Component {
   }
 
   logout = (routerProps) => {
+    //when logging out 
     localStorage.clear()
     this.setState({signedInUser: null})
     routerProps.history.push('/')

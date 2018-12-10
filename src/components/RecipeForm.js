@@ -1,6 +1,6 @@
 import React from 'react'
 import {Segment, Form, Button, Icon} from 'semantic-ui-react'
-// import FormAddIngredient from './FormAddIngredient'
+
 
 
 class RecipeForm extends React.Component {
@@ -26,24 +26,28 @@ class RecipeForm extends React.Component {
   }
 
   handleAddIngredient = () => {
+    //when user clicks on plus button to add additional ingredient
     let arr = [...this.state.ingredient_count]
     arr.push(parseInt(arr.slice(-1).join()) + 1)
     this.setState({ingredient_count: arr})
   }
 
   handleIngredientChange = (index, newValue) => {
+    //when user adds information about an ingredient, store this info on state
     const updatedArray = [...this.state.ingredients];
     updatedArray[index] = newValue;
     this.setState({ingredients: updatedArray});
     }
 
   handleAddInstruction = () => {
+    //when user clicks on plus button to add additional instruction
     let arr = [...this.state.instruction_count]
     arr.push(parseInt(arr.slice(-1).join()) + 1)
     this.setState({instruction_count: arr})
   }
 
   handleInstructionChange = (index, newValue) => {
+    //when user adds information about an instruction, store this info on state
     const updatedArray = [...this.state.instructions];
     updatedArray[index] = newValue;
     this.setState({instructions: updatedArray});
@@ -52,6 +56,7 @@ class RecipeForm extends React.Component {
   handleSubmit = (event, routerProps) => {
     event.preventDefault()
 
+    //need to send info via FormData b/c of image 
     let formData = new FormData()
     formData.append("name", this.state.name)
     formData.append("time", this.state.time)

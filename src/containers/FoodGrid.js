@@ -10,7 +10,7 @@ class FoodGrid extends React.Component {
       (this.props.userList.length === 0 || this.props.recipeList.length === 0) ? null :
       <Grid id="food-grid" columns={3}>
           {this.props.recipeList.map(recipe => {
-            return <Grid.Column><RecipeImage key={recipe.id} recipe={recipe} recipeList={this.props.recipeList} userList={this.props.userList}/></Grid.Column>
+            return <Grid.Column className="recipe-card"><RecipeImage key={recipe.id} recipe={recipe} recipeList={this.props.recipeList} userList={this.props.userList}/></Grid.Column>
           })}
       </Grid>
     )

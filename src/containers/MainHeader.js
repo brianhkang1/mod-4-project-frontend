@@ -15,7 +15,7 @@ export default class MainHeader extends Component {
   render() {
     const { activeItem } = this.state
     return (
-        <Menu inverted secondary>
+        <Menu secondary inverted>
           <Menu.Item id="header-title" header as={NavLink} exact to="/"
             name="potluck"
             active={activeItem === 'potluck'}

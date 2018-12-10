@@ -16,12 +16,14 @@ class RecipeDetails extends React.Component{
   }
 
   fetchSavedRecipes(){
+    //fetch all of user's saved recipes
     fetch(SAVEDRECIPES_URL, {
       headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
     }).then(res => res.json()).then(data => this.setState({savedRecipes: data}))
   }
 
   fetchSelectedRecipe(){
+    //fetch recipe on show page
     fetch(`${RECIPES_URL}/${this.props.recipeId}`, {
       headers: {"Authorization": `Bearer ${localStorage.getItem("token")}`}
     }).then(res => res.json()).then(data => this.setState({selectedRecipe: data}))
@@ -48,6 +50,7 @@ class RecipeDetails extends React.Component{
   handleSaveRecipe = (event) => {
     event.preventDefault()
 
+    //first check if recipe is already saved or not, then allow to post to saved_recipes backend 
     if(!this.state.selectedRecipe.saved_recipes.find(recipe => recipe.user_id === this.props.signedInUser.id)){
       let body = {
         user_id:  this.props.signedInUser.id,

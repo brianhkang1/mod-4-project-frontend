@@ -13,6 +13,7 @@ class RecipeCard extends React.Component{
   }
 
   sanitizeIngredients = () => {
+    //ingredients in backend are bundled in one attribute by "&&", need to separate them and set inside array
     return this.props.recipe.ingredients.split("&&").join(", ")
   }
 
