@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+IMPORTANT NOTE: this is the front-end portion of the Potluck project-- you will need to first run the backend end server (https://github.com/brianhkang1/potluck-project-backend) before npm start. Enter yes when the server asks Would you like to run the app on another port instead?
+
 ## Available Scripts
 
 In the project directory, you can run:
